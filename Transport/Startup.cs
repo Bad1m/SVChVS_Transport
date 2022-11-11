@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Transport.Models;
 
 namespace Transport
 {
@@ -26,6 +28,32 @@ namespace Transport
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // получаем строку подключения из файла конфигурации
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст ApplicationContext в качестве сервиса в приложение
+            services.AddDbContext<TransportAccountingContext>(options =>
+                options.UseSqlServer(connection));
+
+            var corsOrigins = new List<string>
+            {
+                "http://localhost:4200"
+            };
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                "CorsPolicy",
+                builder =>
+                {
+                    builder
+                        .AllowCredentials()
+                        .WithOrigins(corsOrigins.ToArray())
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -47,6 +75,7 @@ namespace Transport
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
