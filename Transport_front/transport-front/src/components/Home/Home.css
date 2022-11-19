@@ -1,0 +1,16 @@
+.home-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  line-height: 80px;
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.img-transport {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+}

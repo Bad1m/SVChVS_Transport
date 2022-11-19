@@ -37,6 +37,7 @@ namespace Transport.Controllers
             {
                 OrderPrice = value.OrderPrice,
                 OrderData = value.OrderData,
+                OrderTime = value.OrderTime,
                 Client = value.Client,
                 Transport = value.Transport,
             };

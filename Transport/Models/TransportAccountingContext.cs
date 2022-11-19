@@ -73,6 +73,10 @@ namespace Transport.Models
                     .HasColumnType("datetime")
                     .HasColumnName("orderData");
 
+                entity.Property(e => e.OrderTime)
+                     .HasColumnType("datetime")
+                     .HasColumnName("orderTime");
+
                 entity.Property(e => e.OrderPrice)
                     .HasColumnType("money")
                     .HasColumnName("orderPrice");

@@ -1,0 +1,12 @@
+div a.active,
+ul li.active {
+  font-weight: bold !important;
+  font-style: italic !important;
+  color: #fff !important;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}

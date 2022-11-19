@@ -10,6 +10,7 @@ namespace Transport.Models
         public int Id { get; set; }
         public decimal OrderPrice { get; set; }
         public DateTime OrderData { get; set; }
+        public DateTime OrderTime { get; set; }
         public int Client { get; set; }
         public int Transport { get; set; }
 
