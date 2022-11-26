@@ -36,6 +36,7 @@ namespace Transport.Controllers
             var Transport = new Models.Transport
             {
                 Number = value.Number,
+                Type = value.Type,
                 Capacity = value.Capacity,
                 Weight = value.Weight,
                 Speed = value.Speed,

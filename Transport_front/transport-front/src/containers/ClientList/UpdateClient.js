@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
 import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
-import { returnInputTransportConfiguration } from "../../Utility/InputTransportConfiguration";
-import * as formUtilityActions from "../../Utility/TransportFormUtility";
+import { returnInputClientConfiguration } from "../../Utility/InputClientConfiguration";
+import * as formUtilityActions from "../../Utility/ClientFormUtility";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
 import ErrorModal from "../../components/Modals/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
@@ -10,72 +10,92 @@ import { useDispatch, useSelector } from "react-redux";
 import * as repositoryActions from "../../store/actions/repositoryActions";
 import * as errorHandlerActions from "../../store/actions/errorHandlerActions";
 
-export default function CreateTransport() {
+export default function CreateClient() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const [isFormValid, setFormValid] = useState(false);
   const [formElementsArray, setFormElementsArray] = useState([]);
-
-  const [transportForm, setTransportForm] = useState({});
+  const [clientForm, updatedClientForm] = useState({});
+  const [id, client] = useState({});
 
   useEffect(() => {
-    const transportForm = returnInputTransportConfiguration();
-    setTransportForm(transportForm);
+    const id = state.match.params.id;
+    const url = "/api/client/" + id;
+    state.onGetClientById(url, { client });
+
+    const clientForm = returnInputClientConfiguration();
+    // setClientForm(clientForm);
     setFormElementsArray(
-      formUtilityActions.convertStateToArrayOfFormObjects(transportForm)
+      formUtilityActions.convertStateToArrayOfFormObjects(clientForm)
     );
+
+    // const updatedOwnerForm = { ...state.clientForm };
+    // let lastName = { ...updatedOwnerForm.lastName };
+    // let firstName = { ...updatedOwnerForm.firstName };
+    // let patronymic = { ...updatedOwnerForm.patronymic };
+
+    // // lastName.value = nextProps.data.lastName;
+    // lastName.value = state.data.lastName;
+    // lastName.valid = true;
+
+    // firstName.value = state.data.firstName;
+    // firstName.valid = true;
+
+    // patronymic.value = state.data.patronymic;
+    // patronymic.valid = true;
+
+    // updatedClientForm["lastName"] = lastName;
+    // updatedClientForm["firstName"] = firstName;
+    // updatedClientForm["patronymic"] = patronymic;
+    this.setState({ clientForm: updatedClientForm });
   }, []);
 
   const navigate = useNavigate();
 
   const handleChangeEvent = (event, id) => {
-    const updatedTransportForm = transportForm;
-    updatedTransportForm[id] =
+    const updatedClientForm = clientForm;
+    updatedClientForm[id] =
       formUtilityActions.executeValidationAndReturnFormElement(
         event,
-        updatedTransportForm,
+        updatedClientForm,
         id
       );
 
-    const counter =
-      formUtilityActions.countInvalidElements(updatedTransportForm);
+    const counter = formUtilityActions.countInvalidElements(updatedClientForm);
 
     setFormElementsArray(
-      formUtilityActions.convertStateToArrayOfFormObjects(updatedTransportForm)
+      formUtilityActions.convertStateToArrayOfFormObjects(updatedClientForm)
     );
-    setTransportForm(updatedTransportForm);
+    // setClientForm(updatedClientForm);
     setFormValid(counter === 0);
   };
 
-  const createClient = (event) => {
+  const updateClient = (event) => {
     event.preventDefault();
 
-    const TransportToCreate = {
-      number: transportForm.number.value,
-      type: transportForm.type.value,
-      capacity: transportForm.capacity.value,
-      weight: transportForm.weight.value,
-      speed: transportForm.speed.value,
-      technicalСondition: transportForm.technicalСondition.value,
+    const ClientToUpdate = {
+      lastName: clientForm.lastName.value,
+      firstName: clientForm.firstName.value,
+      patronymic: clientForm.patronymic.value,
     };
 
-    const url = "/api/transport";
+    const url = "/api/client" + state.data.id;
     const props = {
       showSuccessModal: state.repository.showSuccessModal,
       showErrorModal: state.errorHandler.showErrorModal,
       errorMessage: state.errorHandler.errorMessage,
     };
-    dispatch(repositoryActions.postData(url, TransportToCreate, props));
+    dispatch(repositoryActions.putData(url, ClientToUpdate, props));
   };
 
   const closeSuccessModal = () => {
-    dispatch(repositoryActions.closeSuccessModal("transport", { ...state }));
-    navigate("/transport");
+    dispatch(repositoryActions.closeSuccessModal("client", { ...state }));
+    navigate("/clients");
   };
 
   return (
     <Container>
-      <Form horizontal onSubmit={createClient}>
+      <Form horizontal onSubmit={updateClient}>
         {formElementsArray.map((element) => {
           return (
             <Input
@@ -106,15 +126,6 @@ export default function CreateTransport() {
           </Col>
         </FormGroup>
       </Form>
-
-      <SuccessModal
-        show={state.errorHandler.showErrorModa}
-        modalHeaderText={"Error message"}
-        modalBodyText={state.errorHandler.errorMessage}
-        okButtonText={"OK"}
-        closeModal={() => dispatch(errorHandlerActions.closeErrorModal())}
-      />
-
       <SuccessModal
         show={state.repository.showSuccessModal}
         modalHeaderText={"Success message"}

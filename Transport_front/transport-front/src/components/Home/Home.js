@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import "./Home.css";
+// import transportImage from "/transport-front/public/transport.jpg";
 
 export default function HomePage() {
   return (
@@ -12,11 +13,7 @@ export default function HomePage() {
           </Container>
         </Col>
       </Row>
-      <img
-        src="public/bus-parked-on-the-road.jpg"
-        className="img-transport"
-        alt="transport"
-      />
+      {/* <img src={transportImage} className="img-transport" alt="transport" /> */}
       <Row>
         <Col md={12}>
           <Container className="home-text">

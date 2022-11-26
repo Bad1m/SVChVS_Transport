@@ -7,6 +7,9 @@ import asyncComponent from "./hoc/AsyncComponent/AsyncComponent";
 import CreateClient from "./containers/ClientList/CreateClient";
 import CreateTransport from "./containers/TransportList/CreateTransport";
 import CreateOrder from "./containers/OrderList/CreateOrder";
+import InternalServer from "./components/ErrorPages/InternalServer/InternalServer";
+import UpdateClient from "./containers/ClientList/UpdateClientcopy";
+import DeleteClient from "./containers/ClientList/DeleteClient";
 
 const AsyncClientList = asyncComponent(() => {
   return import("./containers/ClientList/ClientList");
@@ -25,14 +28,17 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="home" element={<HomePage />} />
-          <Route path="clients" element={<AsyncClientList />} />
-          <Route path="transport" element={<AsyncTransportList />} />
-          <Route path="orders" element={<AsyncOrderList />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/clients" element={<AsyncClientList />} />
+          <Route path="/transport" element={<AsyncTransportList />} />
+          <Route path="/orders" element={<AsyncOrderList />} />
           <Route path="/createClient" element={<CreateClient />} />
           <Route path="/createOrder" element={<CreateOrder />} />
           <Route path="/createTransport" element={<CreateTransport />} />
           <Route path="*" element={<HomePage />} />
+          <Route path="/500" element={<InternalServer />} />
+          <Route path="/updateClient/:id" element={<UpdateClient />} />
+          <Route path="/deleteClient/:id" element={<DeleteClient />} />
         </Routes>
       </Layout>
     </BrowserRouter>

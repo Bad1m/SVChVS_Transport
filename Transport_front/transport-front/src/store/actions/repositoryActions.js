@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios/axios";
+import * as errorHandlerActions from "./errorHandlerActions";
 
 const getDataSuccess = (data) => {
   return {
@@ -16,7 +17,7 @@ export const getData = (url, props) => {
         dispatch(getDataSuccess(response.data));
       })
       .catch((error) => {
-        //TODO: код обработчика при возникновении ошибки
+        dispatch(errorHandlerActions.handleHTTPError(error, props));
       });
   };
 };
@@ -36,7 +37,7 @@ export const postData = (url, obj, props) => {
         dispatch(postDataSuccess(response));
       })
       .catch((error) => {
-        //TODO: код обработчика при возникновении ошибки
+        dispatch(errorHandlerActions.handleHTTPError(error, props));
       });
   };
 };
@@ -56,7 +57,7 @@ export const putData = (url, obj, props) => {
         dispatch(putDataSuccess(response));
       })
       .catch((error) => {
-        //TODO: код обработчика при возникновении ошибки
+        dispatch(errorHandlerActions.handleHTTPError(error, props));
       });
   };
 };
@@ -76,7 +77,46 @@ export const deleteData = (url, props) => {
         dispatch(deleteDataSuccess(response));
       })
       .catch((error) => {
-        //TODO: код обработчика при возникновении ошибки
+        dispatch(errorHandlerActions.handleHTTPError(error, props));
       });
   };
+};
+
+export const closeSuccessModal = (props, url) => {
+  return {
+    type: actionTypes.CLOSE_SUCCESS_MODAL,
+    props: props,
+    url: url,
+  };
+};
+
+const execute404Handler = (props) => {
+  return {
+    type: actionTypes.HTTP_404_ERROR,
+    props: props,
+  };
+};
+
+const execute500Handler = (props) => {
+  return {
+    type: actionTypes.HTTP_500_ERROR,
+    props: props,
+  };
+};
+
+const executeOtherErrorHandler = (error) => {
+  return {
+    type: actionTypes.HTTP_OTHER_ERROR,
+    error: error,
+  };
+};
+
+export const handleHTTPError = (error, props) => {
+  if (error.response.status === 404) {
+    return execute404Handler(props);
+  } else if (error.response.status === 500) {
+    return execute500Handler(props);
+  } else {
+    return executeOtherErrorHandler(error);
+  }
 };

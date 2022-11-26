@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import { Button } from "react-bootstrap";
-
-const redirectToUpdateClient = (id, history) => {
-  history.push("/updateClient/" + id);
-};
-
-const rediterctToDeleteClient = (id, history) => {
-  history.push("/deleteClient/" + id);
-};
+import { useNavigate } from "react-router-dom";
 
 export default function Client(props) {
+  const navigate = useNavigate();
+  const redirectToUpdateClient = (id) => {
+    navigate("/updateClient/" + id);
+  };
+
+  const rediterctToDeleteClient = (id) => {
+    navigate("/deleteClient/" + id);
+  };
+
   return (
     <Aux>
       <tr>

@@ -22,7 +22,7 @@ export default function input(props) {
     case "input":
       inputField = (
         <FormGroup controlId={props.id}>
-          <Col componentClass={FormLabel} sm={2}>
+          <Col componentclass={FormLabel} sm={2}>
             {props.label}
           </Col>
           <Container className="input">

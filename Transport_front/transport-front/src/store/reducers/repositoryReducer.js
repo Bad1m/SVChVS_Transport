@@ -1,4 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   data: null,
@@ -33,8 +34,20 @@ const executeDeleteDataSuccess = (state, action) => {
   };
 };
 
+const executeCloseSuccessModal = (state, action) => {
+  //action.props.history.push(action.url);
+  // let navigate = useNavigate();
+  // browserHistory.push(action.url);
+  return {
+    ...state,
+    showSuccessModal: false,
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.CLOSE_SUCCESS_MODAL:
+      return executeCloseSuccessModal(state, action);
     case actionTypes.GET_DATA_SUCCESS:
       return executeGetDataSuccess(state, action);
     case actionTypes.POST_DATA_SUCCESS:

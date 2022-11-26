@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Aux from "react-aux";
 import Client from "../../components/ClientComponents/Client/Client";
 import axios from "../../axios/axios";
+import { connect } from "react-redux";
+import * as repositoryActions from "../../store/actions/repositoryActions";
 
 export default function ClientList() {
   const [data, setData] = useState();

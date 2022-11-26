@@ -52,7 +52,7 @@ export function returnInputTransportConfiguration() {
     },
     technicalСondition: {
       element: "input",
-      type: "number",
+      type: "text",
       value: "",
       validation: { required: true },
       valid: false,
