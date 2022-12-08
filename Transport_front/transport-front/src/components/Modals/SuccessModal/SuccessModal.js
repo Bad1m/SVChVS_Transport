@@ -4,10 +4,6 @@ import { Modal, Button } from "react-bootstrap";
 import "../ModalStyles.css";
 
 export default function SuccessModal(props) {
-  useEffect(() => {
-    console.log("SuccessModal: ", props);
-  });
-
   return (
     <Aux>
       <Modal style={{ opacity: 1 }} show={props.show} backdrop="static">

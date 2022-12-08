@@ -61,7 +61,7 @@ class createOrder extends Component {
       });
     return (
       <Container>
-        <Form horizontal onSubmit={this.createOrder}>
+        <Form onSubmit={this.createOrder}>
           {formElementsArray.map((element) => {
             return (
               <Input

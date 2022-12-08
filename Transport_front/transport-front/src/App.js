@@ -8,8 +8,10 @@ import CreateClient from "./containers/ClientList/CreateClient";
 import CreateTransport from "./containers/TransportList/CreateTransport";
 import CreateOrder from "./containers/OrderList/CreateOrder";
 import InternalServer from "./components/ErrorPages/InternalServer/InternalServer";
-import UpdateClient from "./containers/ClientList/UpdateClientcopy";
+import UpdateClient from "./containers/ClientList/UpdateClient";
 import DeleteClient from "./containers/ClientList/DeleteClient";
+import UpdateTransport from "./containers/TransportList/UpdateTransport";
+import DeleteTransport from "./containers/TransportList/DeleteTransport";
 
 const AsyncClientList = asyncComponent(() => {
   return import("./containers/ClientList/ClientList");
@@ -39,6 +41,8 @@ function App() {
           <Route path="/500" element={<InternalServer />} />
           <Route path="/updateClient/:id" element={<UpdateClient />} />
           <Route path="/deleteClient/:id" element={<DeleteClient />} />
+          <Route path="/updateTransport/:id" element={<UpdateTransport />} />
+          <Route path="/deleteTransport/:id" element={<DeleteTransport />} />
         </Routes>
       </Layout>
     </BrowserRouter>

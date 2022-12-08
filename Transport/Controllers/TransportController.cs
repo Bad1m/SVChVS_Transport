@@ -30,6 +30,14 @@ namespace Transport.Controllers
             return Transport;
         }
 
+        [HttpGet("{id}")]
+        public async Task<Models.Transport> GetById([FromRoute] int id)
+        {
+            var transport = await context.Transports.FirstOrDefaultAsync(_ => _.Id == id);
+
+            return transport;
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CreateTransportRequest value)
         {
@@ -71,12 +79,20 @@ namespace Transport.Controllers
             {
                 return BadRequest();
             }
-            if (!context.Clients.Any(x => x.Id == id))
+            if (!context.Transports.Any(x => x.Id == id))
             {
                 return NotFound();
             }
 
-            context.Update(transport);
+            var storedTransport = await context.Transports.FirstOrDefaultAsync(_ => _.Id == id);
+
+            storedTransport.Number = transport.Number;
+            storedTransport.Speed = transport.Speed;
+            storedTransport.TechnicalСondition = transport.TechnicalСondition;
+            storedTransport.Type = transport.Type;
+            storedTransport.Weight = transport.Weight;
+            storedTransport.Capacity = transport.Capacity;
+
             await context.SaveChangesAsync();
             return Ok(transport);
         }

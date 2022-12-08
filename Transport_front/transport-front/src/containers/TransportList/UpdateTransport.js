@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
 import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
-import { returnInputClientConfiguration } from "../../Utility/InputClientConfiguration";
-import * as formUtilityActions from "../../Utility/ClientFormUtility";
+import { returnInputTransportConfiguration } from "../../Utility/InputTransportConfiguration";
+import * as formUtilityActions from "../../Utility/TransportFormUtility";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
 import ErrorModal from "../../components/Modals/ErrorModal/ErrorModal";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as repositoryActions from "../../store/actions/repositoryActions";
 import * as errorHandlerActions from "../../store/actions/errorHandlerActions";
 
-export default function UpdateClient() {
+export default function UpdateTransport() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -22,11 +22,13 @@ export default function UpdateClient() {
 
   const [isFormValid, setFormValid] = useState(false);
   const [formElementsArray, setFormElementsArray] = useState([]);
-  const [clientForm, setClientForm] = useState({});
+  const [transportForm, setTransportForm] = useState({});
   const navigate = useNavigate();
+  //const [id, client] = useState({});
 
   useEffect(() => {
-    const url = "/api/client/" + id;
+    const url = "/api/transport/" + id;
+    //dispatch(getData(url, ))
 
     const props = {
       showSuccessModal: showSuccessModal,
@@ -38,20 +40,29 @@ export default function UpdateClient() {
 
   useEffect(() => {
     if (data) {
-      const clientForm = returnInputClientConfiguration();
+      const transportForm = returnInputTransportConfiguration();
 
-      clientForm.lastName.value = data.lastName;
-      clientForm.lastName.valid = true;
+      transportForm.number.value = data.number;
+      transportForm.number.valid = true;
 
-      clientForm.firstName.value = data.firstName;
-      clientForm.firstName.valid = true;
+      transportForm.type.value = data.type;
+      transportForm.type.valid = true;
 
-      clientForm.patronymic.value = data.patronymic;
-      clientForm.patronymic.valid = true;
+      transportForm.capacity.value = data.capacity;
+      transportForm.capacity.valid = true;
 
-      setClientForm(clientForm);
+      transportForm.weight.value = data.weight;
+      transportForm.weight.valid = true;
+
+      transportForm.speed.value = data.speed;
+      transportForm.speed.valid = true;
+
+      transportForm.technicalСondition.value = data.technicalСondition;
+      transportForm.technicalСondition.valid = true;
+
+      setTransportForm(transportForm);
       setFormElementsArray(
-        formUtilityActions.convertStateToArrayOfFormObjects(clientForm)
+        formUtilityActions.convertStateToArrayOfFormObjects(transportForm)
       );
 
       setFormValid(true);
@@ -59,49 +70,54 @@ export default function UpdateClient() {
   }, [data]);
 
   const handleChangeEvent = (event, id) => {
-    const updatedClientForm = clientForm;
-    updatedClientForm[id] =
+    const updatedTransportForm = transportForm;
+    updatedTransportForm[id] =
       formUtilityActions.executeValidationAndReturnFormElement(
         event,
-        updatedClientForm,
+        updatedTransportForm,
         id
       );
 
-    const counter = formUtilityActions.countInvalidElements(updatedClientForm);
+    const counter =
+      formUtilityActions.countInvalidElements(updatedTransportForm);
 
     setFormElementsArray(
-      formUtilityActions.convertStateToArrayOfFormObjects(updatedClientForm)
+      formUtilityActions.convertStateToArrayOfFormObjects(updatedTransportForm)
     );
-    setClientForm(updatedClientForm);
+    setTransportForm(updatedTransportForm);
     setFormValid(counter === 0);
   };
 
-  const updateClient = (event) => {
+  const updateTransport = (event) => {
     event.preventDefault();
+    console.log(transportForm);
 
-    const clientToUpdate = {
-      lastName: clientForm.lastName.value,
-      firstName: clientForm.firstName.value,
-      patronymic: clientForm.patronymic.value,
+    const transportToUpdate = {
+      number: transportForm.number.value,
+      type: transportForm.type.value,
+      capacity: transportForm.capacity.value,
+      weight: transportForm.weight.value,
+      speed: transportForm.speed.value,
+      technicalСondition: transportForm.technicalСondition.value,
     };
 
-    const url = "/api/client/" + id;
+    const url = "/api/transport/" + id;
     const props = {
       showSuccessModal: showSuccessModal,
       showErrorModal: showErrorModal,
       errorMessage: errorMessage,
     };
-    dispatch(repositoryActions.putData(url, clientToUpdate, props));
+    dispatch(repositoryActions.putData(url, transportToUpdate, props));
   };
 
   const closeSuccessModal = () => {
-    dispatch(repositoryActions.closeSuccessModal("client", { ...state }));
-    navigate("/clients");
+    dispatch(repositoryActions.closeSuccessModal("transport", { ...state }));
+    navigate("/transport");
   };
 
   return (
     <Container>
-      <Form onSubmit={updateClient}>
+      <Form onSubmit={updateTransport}>
         {formElementsArray.map((element) => {
           return (
             <Input
@@ -128,21 +144,21 @@ export default function UpdateClient() {
             </Button>
           </Col>
           <Col md={1}>
-            <Button onClick={() => navigate("/clients")}>Отмена</Button>
+            <Button onClick={() => navigate("/transport")}>Отмена</Button>
           </Col>
         </FormGroup>
       </Form>
       <SuccessModal
         show={showSuccessModal}
-        modalHeaderText={"Сообщение"}
-        modalBodyText={"Успешно обновлено"}
+        modalHeaderText={"Success message"}
+        modalBodyText={"Action completed successfully"}
         okButtonText={"OK"}
         successClick={closeSuccessModal}
       />
 
       <ErrorModal
         show={showErrorModal}
-        modalHeaderText={"Сообщение об ошибке"}
+        modalHeaderText={"Error message"}
         modalBodyText={errorMessage}
         okButtonText={"OK"}
         closeModal={() => dispatch(errorHandlerActions.closeErrorModal())}

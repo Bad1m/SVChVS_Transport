@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import { Button } from "react-bootstrap";
-
-const redirectToUpdateTransport = (id, history) => {
-  history.push("/updateTransport/" + id);
-};
-
-const rediterctToDeleteTransport = (id, history) => {
-  history.push("/deleteTransport/" + id);
-};
+import { useNavigate } from "react-router-dom";
 
 export default function Transport(props) {
+
+  const navigate = useNavigate();
+  const redirectToUpdateTransport = (id) => {
+    navigate("/updateTransport/" + id);
+  };
+
+  const rediterctToDeleteTransport = (id) => {
+    navigate("/deleteTransport/" + id);
+  };
   return (
     <Aux>
       <tr>
@@ -24,19 +26,19 @@ export default function Transport(props) {
         <td>
           <Button
             onClick={() =>
-              redirectToUpdateTransport(props.client.id, props.history)
+              redirectToUpdateTransport(props.transport.id, props.history)
             }
           >
-            Update
+            Обновить
           </Button>
         </td>
         <td>
           <Button
             onClick={() =>
-              rediterctToDeleteTransport(props.client.id, props.history)
+              rediterctToDeleteTransport(props.transport.id, props.history)
             }
           >
-            Delete
+            Удалить
           </Button>
         </td>
       </tr>

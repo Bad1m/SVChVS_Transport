@@ -75,7 +75,7 @@ export default function CreateTransport() {
 
   return (
     <Container>
-      <Form horizontal onSubmit={createClient}>
+      <Form onSubmit={createClient}>
         {formElementsArray.map((element) => {
           return (
             <Input

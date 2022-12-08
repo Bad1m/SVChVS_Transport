@@ -73,7 +73,7 @@ export default function CreateOrder() {
 
   return (
     <Container>
-      <Form horizontal onSubmit={createOrder}>
+      <Form onSubmit={createOrder}>
         {formElementsArray.map((element) => {
           return (
             <Input

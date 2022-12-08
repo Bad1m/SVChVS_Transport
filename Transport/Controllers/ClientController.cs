@@ -31,6 +31,14 @@ namespace Transport.Controllers
             return clients;
         }
 
+        [HttpGet("{id}")]
+        public async Task<Client> GetById([FromRoute] int id)
+        {
+            var client = await context.Clients.FirstOrDefaultAsync(_ => _.Id == id);
+
+            return client;
+        }
+
         // POST api/<ClientController>
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CreateClientRequest value)

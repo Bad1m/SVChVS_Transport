@@ -71,7 +71,7 @@ export default function CreateClient() {
 
   return (
     <Container>
-      <Form horizontal onSubmit={createClient}>
+      <Form onSubmit={createClient}>
         {formElementsArray.map((element) => {
           return (
             <Input
@@ -94,7 +94,7 @@ export default function CreateClient() {
         <FormGroup>
           <Col mdoffset={6} md={1}>
             <Button type="submit" disabled={!isFormValid}>
-              Создать
+              Добавить
             </Button>
           </Col>
           <Col md={1}>
@@ -105,15 +105,15 @@ export default function CreateClient() {
 
       <SuccessModal
         show={state.repository.showSuccessModal}
-        modalHeaderText={"Success message"}
-        modalBodyText={"Action completed successfully"}
+        modalHeaderText={"Сообщение"}
+        modalBodyText={"Успешно добавлено"}
         okButtonText={"OK"}
         successClick={closeSuccessModal}
       />
 
       <ErrorModal
         show={state.errorHandler.showErrorModa}
-        modalHeaderText={"Error message"}
+        modalHeaderText={"Сообщение об ошибке"}
         modalBodyText={state.errorHandler.errorMessage}
         okButtonText={"OK"}
         closeModal={() => dispatch(errorHandlerActions.closeErrorModal())}

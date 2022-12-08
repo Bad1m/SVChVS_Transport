@@ -26,7 +26,7 @@ export default function Client(props) {
               redirectToUpdateClient(props.client.id, props.history)
             }
           >
-            Update
+            Обновить
           </Button>
         </td>
         <td>
@@ -35,7 +35,7 @@ export default function Client(props) {
               rediterctToDeleteClient(props.client.id, props.history)
             }
           >
-            Delete
+            Удалить
           </Button>
         </td>
       </tr>
