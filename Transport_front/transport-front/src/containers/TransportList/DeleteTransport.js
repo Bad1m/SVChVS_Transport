@@ -78,74 +78,76 @@ export default function DeleteTransport() {
     <Aux>
       <Row>
         <Col md={10}>
-          <Container>
-            <Row>
-              <Col md={3}>
-                <FormLabel htmlFor="number">Номер:</FormLabel>
-              </Col>
-              <Col md={7}>
-                <span number="number">{data.number}</span>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={3}>
-                <FormLabel htmlFor="type">Тип:</FormLabel>
-              </Col>
-              <Col md={7}>
-                <span type="type">{data.type}</span>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={3}>
-                <FormLabel htmlFor="capacity">Вместимость:</FormLabel>
-              </Col>
-              <Col md={7}>
-                <span capacity="capacity">{data.capacity}</span>
-              </Col>
-            </Row>
+          {data && (
+            <Container>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="number">Номер:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span number="number">{data.number}</span>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="type">Тип:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span type="type">{data.type}</span>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="capacity">Вместимость:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span capacity="capacity">{data.capacity}</span>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col md={3}>
-                <FormLabel htmlFor="weight">Масса:</FormLabel>
-              </Col>
-              <Col md={7}>
-                <span weight="weight">{data.weight}</span>
-              </Col>
-            </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="weight">Масса:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span weight="weight">{data.weight}</span>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col md={3}>
-                <FormLabel htmlFor="speed">Скорость:</FormLabel>
-              </Col>
-              <Col md={7}>
-                <span speed="speed">{data.speed}</span>
-              </Col>
-            </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="speed">Скорость:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span speed="speed">{data.speed}</span>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col md={3}>
-                <FormLabel htmlFor="technicalСondition">
-                  Техническое состояние:
-                </FormLabel>
-              </Col>
-              <Col md={7}>
-                <span technicalСondition="technicalСondition">
-                  {data.technicalСondition}
-                </span>
-              </Col>
-            </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="technicalСondition">
+                    Техническое состояние:
+                  </FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span technicalСondition="technicalСondition">
+                    {data.technicalСondition}
+                  </span>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col mdoffset={8} md={1}>
-                <Button type="submit" onClick={deleteTransport}>
-                  Удалить
-                </Button>
-              </Col>
-              <Col md={1}>
-                <Button onClick={() => navigate("/transport")}>Отмена</Button>
-              </Col>
-            </Row>
-          </Container>
+              <Row>
+                <Col mdoffset={8} md={1}>
+                  <Button type="submit" onClick={deleteTransport}>
+                    Удалить
+                  </Button>
+                </Col>
+                <Col md={1}>
+                  <Button onClick={() => navigate("/transport")}>Отмена</Button>
+                </Col>
+              </Row>
+            </Container>
+          )}
         </Col>
       </Row>
       <SuccessModal

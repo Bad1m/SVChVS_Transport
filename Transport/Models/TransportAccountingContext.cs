@@ -86,13 +86,13 @@ namespace Transport.Models
                 entity.HasOne(d => d.ClientNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Client)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Order_Client");
 
                 entity.HasOne(d => d.TransportNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Transport)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Order_Transport");
             });
 
