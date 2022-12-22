@@ -3,7 +3,6 @@ import { Row, Button, FormLabel, Col, Container } from "react-bootstrap";
 import { returnInputClientConfiguration } from "../../Utility/InputClientConfiguration";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
 import ErrorModal from "../../components/Modals/ErrorModal/ErrorModal";
-import * as formUtilityActions from "../../Utility/ClientFormUtility";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as repositoryActions from "../../store/actions/repositoryActions";
@@ -46,6 +45,8 @@ export default function DeleteClient() {
       clientForm.lastName.value = data.lastName;
       clientForm.firstName.value = data.firstName;
       clientForm.patronymic.value = data.patronymic;
+      clientForm.number.value = data.number;
+      clientForm.price.value = data.price;
 
       setClientForm(clientForm);
     }
@@ -93,6 +94,22 @@ export default function DeleteClient() {
                 </Col>
                 <Col md={7}>
                   <span patronymic="patronymic">{data.patronymic}</span>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="number">Номер:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span number="number">{data.number}</span>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={3}>
+                  <FormLabel htmlFor="price">Цена:</FormLabel>
+                </Col>
+                <Col md={7}>
+                  <span price="price">{data.price}</span>
                 </Col>
               </Row>
 

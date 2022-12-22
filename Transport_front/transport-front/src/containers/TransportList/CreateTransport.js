@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
-import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
+import { Form, Button, FormGroup, Col, Container, Row } from "react-bootstrap";
 import { returnInputTransportConfiguration } from "../../Utility/InputTransportConfiguration";
 import * as formUtilityActions from "../../Utility/TransportFormUtility";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
@@ -96,36 +96,31 @@ export default function CreateTransport() {
         })}
         <br />
         <FormGroup>
-          <Col mdoffset={6} md={1}>
-            <Button type="submit" disabled={!isFormValid}>
-              Создать
-            </Button>
-          </Col>
-          <Col md={1}>
-            <Button onClick={() => navigate("/clients")}>Отмена</Button>
-          </Col>
+          <Row>
+            <Col mdoffset={6} md={1}>
+              <Button type="submit" disabled={!isFormValid}>
+                Создать
+              </Button>
+            </Col>
+
+            <Col md={1}>
+              <Button onClick={() => navigate("/transport")}>Отмена</Button>
+            </Col>
+          </Row>
         </FormGroup>
       </Form>
 
       <SuccessModal
-        show={state.errorHandler.showErrorModa}
-        modalHeaderText={"Error message"}
-        modalBodyText={state.errorHandler.errorMessage}
-        okButtonText={"OK"}
-        closeModal={() => dispatch(errorHandlerActions.closeErrorModal())}
-      />
-
-      <SuccessModal
         show={state.repository.showSuccessModal}
-        modalHeaderText={"Success message"}
-        modalBodyText={"Action completed successfully"}
+        modalHeaderText={"Сообщение"}
+        modalBodyText={"Успешно удалено"}
         okButtonText={"OK"}
         successClick={closeSuccessModal}
       />
 
       <ErrorModal
         show={state.errorHandler.showErrorModa}
-        modalHeaderText={"Error message"}
+        modalHeaderText={"Сообщение об ошибке"}
         modalBodyText={state.errorHandler.errorMessage}
         okButtonText={"OK"}
         closeModal={() => dispatch(errorHandlerActions.closeErrorModal())}

@@ -16,6 +16,8 @@ namespace Transport.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Patronymic { get; set; }
+        public int Number { get; set; }
+        public decimal Price { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }

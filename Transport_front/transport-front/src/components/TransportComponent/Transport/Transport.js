@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export default function Transport(props) {
-
   const navigate = useNavigate();
   const redirectToUpdateTransport = (id) => {
     navigate("/updateTransport/" + id);

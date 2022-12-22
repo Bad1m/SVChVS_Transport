@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,11 @@ export default function Client(props) {
         <td>{props.client.lastName}</td>
         <td>{props.client.firstName}</td>
         <td>{props.client.patronymic}</td>
+        <td>{props.client.number}</td>
+        <td>{props.client.price}</td>
         <td>
           <Button
+            className=""
             onClick={() =>
               redirectToUpdateClient(props.client.id, props.history)
             }

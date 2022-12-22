@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
-import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
+import { Form, Button, FormGroup, Col, Container, Row } from "react-bootstrap";
 import { returnInputTransportConfiguration } from "../../Utility/InputTransportConfiguration";
 import * as formUtilityActions from "../../Utility/TransportFormUtility";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
@@ -138,27 +138,25 @@ export default function UpdateTransport() {
         })}
         <br />
         <FormGroup>
-          <Col mdoffset={6} md={1}>
+          <Row>
             <Button type="submit" disabled={!isFormValid}>
               Обновить
             </Button>
-          </Col>
-          <Col md={1}>
             <Button onClick={() => navigate("/transport")}>Отмена</Button>
-          </Col>
+          </Row>
         </FormGroup>
       </Form>
       <SuccessModal
         show={showSuccessModal}
-        modalHeaderText={"Success message"}
-        modalBodyText={"Action completed successfully"}
+        modalHeaderText={"Сообщение"}
+        modalBodyText={"Успешно обновлено"}
         okButtonText={"OK"}
         successClick={closeSuccessModal}
       />
 
       <ErrorModal
         show={showErrorModal}
-        modalHeaderText={"Error message"}
+        modalHeaderText={"Сообщение об ошибке"}
         modalBodyText={errorMessage}
         okButtonText={"OK"}
         closeModal={() => dispatch(errorHandlerActions.closeErrorModal())}

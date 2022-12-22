@@ -1,6 +1,5 @@
 import React from "react";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
-import DateTimePicker from "react-datetime-picker";
 import {
   Container,
   FormGroup,

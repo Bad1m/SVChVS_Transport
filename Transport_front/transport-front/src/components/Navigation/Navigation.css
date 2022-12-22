@@ -1,12 +1,40 @@
 div a.active,
-ul li.active {
+a.nav-link.active {
   font-weight: bold !important;
   font-style: italic !important;
-  color: #fff !important;
+  color: rgb(255, 255, 255) !important;
+}
+.header {
+  /* background-color: #337ab7 !important; */
+  background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);
+  width: auto;
 }
 
 .nav {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  margin: auto;
+}
+
+a {
+  font-weight: bold !important;
+  font-style: italic !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+a.nav-link {
+  list-style: none;
+  display: inline;
+  float: left;
+  width: auto;
+  padding: 3%;
+}
+
+.nav a.nav-link:focus {
+  float: left;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  /* background-color: #2066b5; */
 }

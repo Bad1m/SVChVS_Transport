@@ -1,11 +1,10 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Aux from "react-aux";
 import Client from "../../components/ClientComponents/Client/Client";
 import axios from "../../axios/axios";
-import { connect } from "react-redux";
-import * as repositoryActions from "../../store/actions/repositoryActions";
+import "./Client.css";
 
 export default function ClientList() {
   const [data, setData] = useState();
@@ -24,7 +23,11 @@ export default function ClientList() {
     <Aux>
       <Row>
         <Col md={2}>
-          <Link to="/createClient">Добавить клиента</Link>
+          <Link to="/createClient">
+            <button className="custom-btn add">
+              <span>Добавить клиента</span>
+            </button>
+          </Link>
         </Col>
       </Row>
       <br />
@@ -38,6 +41,8 @@ export default function ClientList() {
                   <th>Фамилия</th>
                   <th>Имя</th>
                   <th>Отчество</th>
+                  <th>Номер</th>
+                  <th>Цена</th>
                   <th>Обновить</th>
                   <th>Удалить</th>
                 </tr>

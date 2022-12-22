@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Aux from "react-aux";
 import Transport from "../../components/TransportComponent/Transport/Transport";
 import axios from "../../axios/axios";
+import "./Transport.css";
 
 export default function TransportList() {
   const [data, setData] = useState();
@@ -22,7 +23,11 @@ export default function TransportList() {
     <Aux>
       <Row>
         <Col md={2}>
-          <Link to="/createTransport">Добавить транспорт</Link>
+          <Link to="/createTransport">
+            <button className="custom-btn add">
+              <span>Добавить транспорт</span>
+            </button>
+          </Link>
         </Col>
       </Row>
       <br />

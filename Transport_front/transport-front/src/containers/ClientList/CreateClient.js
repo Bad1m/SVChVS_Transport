@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
-import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
+import { Form, Button, FormGroup, Col, Container, Row } from "react-bootstrap";
 import { returnInputClientConfiguration } from "../../Utility/InputClientConfiguration";
 import * as formUtilityActions from "../../Utility/ClientFormUtility";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
@@ -53,6 +53,8 @@ export default function CreateClient() {
       lastName: clientForm.lastName.value,
       firstName: clientForm.firstName.value,
       patronymic: clientForm.patronymic.value,
+      number: clientForm.number.value,
+      price: clientForm.price.value,
     };
 
     const url = "/api/client";
@@ -92,14 +94,12 @@ export default function CreateClient() {
         })}
         <br />
         <FormGroup>
-          <Col mdoffset={6} md={1}>
+          <Row>
             <Button type="submit" disabled={!isFormValid}>
               Добавить
             </Button>
-          </Col>
-          <Col md={1}>
             <Button onClick={() => navigate("/clients")}>Отмена</Button>
-          </Col>
+          </Row>
         </FormGroup>
       </Form>
 

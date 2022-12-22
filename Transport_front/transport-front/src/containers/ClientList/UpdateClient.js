@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
-import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
+import { Form, Button, FormGroup, Col, Container, Row } from "react-bootstrap";
 import { returnInputClientConfiguration } from "../../Utility/InputClientConfiguration";
 import * as formUtilityActions from "../../Utility/ClientFormUtility";
 import SuccessModal from "../../components/Modals/SuccessModal/SuccessModal";
@@ -49,6 +49,12 @@ export default function UpdateClient() {
       clientForm.patronymic.value = data.patronymic;
       clientForm.patronymic.valid = true;
 
+      clientForm.number.value = data.number;
+      clientForm.number.valid = true;
+
+      clientForm.price.value = data.price;
+      clientForm.price.valid = true;
+
       setClientForm(clientForm);
       setFormElementsArray(
         formUtilityActions.convertStateToArrayOfFormObjects(clientForm)
@@ -83,6 +89,8 @@ export default function UpdateClient() {
       lastName: clientForm.lastName.value,
       firstName: clientForm.firstName.value,
       patronymic: clientForm.patronymic.value,
+      number: clientForm.number.value,
+      price: clientForm.price.value,
     };
 
     const url = "/api/client/" + id;
@@ -122,14 +130,12 @@ export default function UpdateClient() {
         })}
         <br />
         <FormGroup>
-          <Col mdoffset={6} md={1}>
+          <Row>
             <Button type="submit" disabled={!isFormValid}>
               Обновить
             </Button>
-          </Col>
-          <Col md={1}>
             <Button onClick={() => navigate("/clients")}>Отмена</Button>
-          </Col>
+          </Row>
         </FormGroup>
       </Form>
       <SuccessModal
@@ -139,7 +145,6 @@ export default function UpdateClient() {
         okButtonText={"OK"}
         successClick={closeSuccessModal}
       />
-
       <ErrorModal
         show={showErrorModal}
         modalHeaderText={"Сообщение об ошибке"}

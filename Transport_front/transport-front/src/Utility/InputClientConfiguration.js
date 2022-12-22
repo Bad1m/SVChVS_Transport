@@ -30,5 +30,25 @@ export function returnInputClientConfiguration() {
       errorMessage: "",
       label: "Отчество:",
     },
+    number: {
+      element: "input",
+      type: "number",
+      value: "",
+      validation: { required: true },
+      valid: false,
+      touched: false,
+      errorMessage: "",
+      label: "Номер:",
+    },
+    price: {
+      element: "input",
+      type: "double",
+      value: "",
+      validation: { required: true },
+      valid: false,
+      touched: false,
+      errorMessage: "",
+      label: "Цена:",
+    },
   };
 }

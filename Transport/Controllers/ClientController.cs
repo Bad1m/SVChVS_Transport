@@ -48,6 +48,8 @@ namespace Transport.Controllers
                 LastName = value.LastName,
                 FirstName = value.FirstName,
                 Patronymic = value.Patronymic,
+                Number = value.Number,
+                Price = value.Price,
             };
 
             await context.Clients.AddAsync(client);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Input from "../../UI/Inputs/Input";
-import { Form, Well, Button, FormGroup, Col, Container } from "react-bootstrap";
+import { Form, Button, FormGroup, Col, Container } from "react-bootstrap";
 import { returnInputOrderConfiguration } from "../../Utility/InputOrderConfiguration";
 import * as formUtilityActions from "../../Utility/OrderFormUtility";
 import { connect } from "react-redux";

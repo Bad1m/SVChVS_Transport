@@ -57,6 +57,14 @@ namespace Transport.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("patronymic");
+
+                entity.Property(e => e.Number)
+                   .ValueGeneratedNever()
+                   .HasColumnName("number");
+
+                entity.Property(e => e.Price)
+                  .HasColumnType("decimal")
+                  .HasColumnName("price");
             });
 
             modelBuilder.Entity<Order>(entity =>
