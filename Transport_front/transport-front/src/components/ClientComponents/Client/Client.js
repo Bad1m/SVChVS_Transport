@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 export default function Client(props) {
   const navigate = useNavigate();
   const redirectToUpdateClient = (id) => {
-    navigate("/updateClient/" + id);
+    navigate("/updateClient" + id);
   };
 
   const rediterctToDeleteClient = (id) => {
-    navigate("/deleteClient/" + id);
+    navigate("/deleteClient" + id);
   };
 
   return (

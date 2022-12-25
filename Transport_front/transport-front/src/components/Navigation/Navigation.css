@@ -2,7 +2,7 @@ div a.active,
 a.nav-link.active {
   font-weight: bold !important;
   font-style: italic !important;
-  color: rgb(255, 255, 255) !important;
+  color: rgb(0, 0, 0) !important;
 }
 .header {
   /* background-color: #337ab7 !important; */

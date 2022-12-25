@@ -39,10 +39,10 @@ function App() {
           <Route path="/createTransport" element={<CreateTransport />} />
           <Route path="*" element={<HomePage />} />
           <Route path="/500" element={<InternalServer />} />
-          <Route path="/updateClient/:id" element={<UpdateClient />} />
-          <Route path="/deleteClient/:id" element={<DeleteClient />} />
-          <Route path="/updateTransport/:id" element={<UpdateTransport />} />
-          <Route path="/deleteTransport/:id" element={<DeleteTransport />} />
+          <Route path="/updateClient:id" element={<UpdateClient />} />
+          <Route path="/deleteClient:id" element={<DeleteClient />} />
+          <Route path="/updateTransport:id" element={<UpdateTransport />} />
+          <Route path="/deleteTransport:id" element={<DeleteTransport />} />
         </Routes>
       </Layout>
     </BrowserRouter>

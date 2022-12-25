@@ -8,9 +8,7 @@ export default function errorModal(props) {
     <Aux>
       <Modal show={props.show} backdrop="static">
         <Modal.Header>{props.modalHeaderText}</Modal.Header>
-        <Modal.Body>
-          <p>{props.modalBodyText}</p>
-        </Modal.Body>
+        <Modal.Body>{props.modalBodyText}</Modal.Body>
         <Modal.Footer>
           <Button onClick={props.closeModal}>{props.okButtonText}</Button>
         </Modal.Footer>

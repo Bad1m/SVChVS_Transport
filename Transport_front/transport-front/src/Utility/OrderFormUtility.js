@@ -21,7 +21,7 @@ function checkValidity(value, validation) {
       validationObject.isValid = value.trim() !== "";
       validationObject.errorMessage = validationObject.isValid
         ? ""
-        : "Field is required";
+        : "Поле пустое";
     }
 
     if (validationObject.isValid && validation.maxLength) {

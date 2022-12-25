@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 export default function Transport(props) {
   const navigate = useNavigate();
   const redirectToUpdateTransport = (id) => {
-    navigate("/updateTransport/" + id);
+    navigate("/updateTransport" + id);
   };
 
   const rediterctToDeleteTransport = (id) => {
-    navigate("/deleteTransport/" + id);
+    navigate("/deleteTransport" + id);
   };
   return (
     <Aux>
